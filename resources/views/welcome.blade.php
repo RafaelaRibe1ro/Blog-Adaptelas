@@ -22,11 +22,12 @@
     </head>
     <body class="antialiased" style="background-color: bisque; display: flex; flex-direction: column">
 
-            <h1>MEU BLOG</h1>
-        <form action="{{ Route('blog.store') }}" method="POST" style="display: flex; flex-direction: column">
+        <h1>MEU BLOG</h1>
+        <form id="meu-form" action="{{ Route('blog.store') }}" method="POST" style="display: flex; flex-direction: column" enctype="multipart/form-data">
 
         @csrf
         @method('POST')
+
             <label for="title">
                 Titulo
             <input name="title" type="text"/>
@@ -46,16 +47,23 @@
                 Texto
             <input name="title" type="text"/>
             </label>
-            <input type="submit">
         </form>
 
+        <input type="submit" form="meu-form">
+
         <div>
-            @isset($posts))
+            @isset($posts)
                 @foreach($posts as $post)
-                    <h2>{{$post->title}}</h2>
-                    <h3>{{$post->description}}</h3>
-                    <p>{{$post->text}}</p>
-                    <span>By: {{$post->author}}</span>
+                    <h2>{{ $post->title }}</h2>
+                    <h3>{{ $post->description }}</h3>
+                    <p>{{ $post->text }}</p>
+                    <span>By: {{ $post->author }}</span>
+                    </form>
+                    <form id="delete-{{$post->id}}" action="{{ route('blog.delete', $post->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                    <input type="submit" form="delete-{{$post->id}}"> 
                 @endforeach
             @endisset
         </div>

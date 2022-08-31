@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/blog', [App\Http\Controllers\PostController::class, 'index']);
 Route::post('/blog/post', [App\Http\Controllers\PostController::class, 'store'])->name('blog.store');
+Route::delete('/blog/post/{id}', [App\Http\Controllers\PostController::class, 'destroy'])->name('blog.delete');
