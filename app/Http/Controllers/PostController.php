@@ -36,14 +36,14 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StorePostRequest  $request
-     * @return Illuminate\Http\RedirectResponse
+     * @return string
      */
-    public function store(StorePostRequest $request)
+    public function store(StorePostRequest $request): RedirectResponse
     {
         $data = $request->validate();
         Post::create($data);
 
-        return $this->index();
+        return redirect()->route('blog.index');
     }
 
     /**
@@ -83,11 +83,13 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(int $id)
     {
-        //
+        $post = Post::find($id);
+        $post?->delete();
+        return redirect()->route('blog.index'); 
     }
 }
