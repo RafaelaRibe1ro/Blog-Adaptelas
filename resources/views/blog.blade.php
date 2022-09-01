@@ -23,7 +23,11 @@
     <body class="antialiased" style="background-color: bisque; display: flex; flex-direction: column">
 
         <h1>MEU BLOG</h1>
-        <form id="meu-form" action="{{ route('blog.store') }}" method="POST" style="display: flex; flex-direction: column" enctype="multipart/form-data">
+
+        <h2>NOVO POST:</h2>
+        <div style="background-color: bisque">
+        <form id="meu-form" action="{{ route('blog.store') }}" method="POST" style="display: flex; flex-direction: column" 
+        enctype="multipart/form-data">
 
         @csrf
         @method('POST')
@@ -49,9 +53,13 @@
             </label>
         </form>
 
-        <input type="submit" form="meu-form">
+        <button type="submit" form="meu-form">Postar</button>
+        </div>
 
         <div>
+            <h2>Mais Recentes:</h2>
+            <div style="background-color: pink; border: 2px solid black; width: 400px; height: 200px; display: flex;
+    flex-direction: column; justify-content: center">
             @isset($posts)
                 @foreach($posts as $post)
                     <h2>{{ $post->title }}</h2>
@@ -64,9 +72,9 @@
                         @method('DELETE')
                     </form>
                     <input type="submit" form="delete-{{$post->id}}"> 
+            </div>
                 @endforeach
             @endisset
         </div>
-    
     </body>
 </html>
