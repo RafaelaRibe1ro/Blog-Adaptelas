@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -40,10 +41,10 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $data = $request->validate();
+       
+        $data = $request->all();
         Post::create($data);
-
-        return redirect()->route('blog.index');
+        return redirect()->route('blog.index'); 
     }
 
     /**
