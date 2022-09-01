@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->get();
         return view('welcome', compact('posts'));
     }
 
@@ -36,9 +36,9 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StorePostRequest  $request
-     * @return string
+     * @return Illuminate\Http\Response
      */
-    public function store(StorePostRequest $request): RedirectResponse
+    public function store(StorePostRequest $request)
     {
         $data = $request->validate();
         Post::create($data);

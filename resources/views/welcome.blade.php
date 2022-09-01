@@ -23,7 +23,7 @@
     <body class="antialiased" style="background-color: bisque; display: flex; flex-direction: column">
 
         <h1>MEU BLOG</h1>
-        <form id="meu-form" action="{{ Route('blog.store') }}" method="POST" style="display: flex; flex-direction: column" enctype="multipart/form-data">
+        <form id="meu-form" action="{{ route('blog.store') }}" method="POST" style="display: flex; flex-direction: column" enctype="multipart/form-data">
 
         @csrf
         @method('POST')
@@ -35,17 +35,17 @@
 
             <label for="description">
                 Descricao
-            <input name="title" type="text"/>
+            <input name="description" type="text"/>
             </label>
 
             <label for="author">
                 Autor
-            <input name="title" type="text"/>
+            <input name="author" type="text"/>
             </label>
 
             <label for="text">
                 Texto
-            <input name="title" type="text"/>
+            <input name="text" type="text"/>
             </label>
         </form>
 
