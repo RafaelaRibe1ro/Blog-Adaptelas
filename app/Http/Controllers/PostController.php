@@ -42,7 +42,7 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
        
-        $data = $request->all();
+        $data = $request->validated();
         Post::create($data);
         return redirect()->route('blog.index'); 
     }
@@ -64,9 +64,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(int $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('editblog', compact('post'));
     }
 
     /**
@@ -76,9 +77,14 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, int $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $data = $request->validated();
+
+        $post->update($data);
+
+        return redirect()->route('blog.index'); 
     }
 
     /**

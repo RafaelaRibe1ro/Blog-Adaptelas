@@ -54,15 +54,17 @@
         </form>
 
         <button type="submit" form="meu-form">Postar</button>
+
         </div>
 
-        <div>
+        <div align='center'>
             <h2>Mais Recentes:</h2>
-            <div style="background-color: pink; border: 2px solid black; width: 400px; height: 200px; display: flex;
-    flex-direction: column; justify-content: center">
+            <div>
             @isset($posts)
                 @foreach($posts as $post)
-                    <h2>{{ $post->title }}</h2>
+                <div align='center'; style= "background-color: pink; border: 2px solid black; width: 40%; height: 50%; display: flex;
+    flex-direction: column">
+                    <h2> {{ $post->title }}</h2>
                     <h3>{{ $post->description }}</h3>
                     <p>{{ $post->text }}</p>
                     <span>By: {{ $post->author }}</span>
@@ -71,7 +73,9 @@
                         @csrf
                         @method('DELETE')
                     </form>
-                    <input type="submit" form="delete-{{$post->id}}"> 
+                    <button type="submit" form="delete-{{ $post->id }}">Excluir</button>
+                    <a href="{{ route('blog.edit', $post->id) }}"  form="meu-form"><button>Editar</button></a>
+                </div>
             </div>
                 @endforeach
             @endisset
