@@ -27,7 +27,7 @@
         <h2>EDITAR POST:</h2>
         @isset($post)
         <div style="background-color: bisque">
-        <form id="meu-form" action="{{ route('blog.update'), $post->id }}" method="POST" style="display: flex; flex-direction: column" 
+        <form id="meu-form" action="" method="POST" style="display: flex; flex-direction: column" 
         enctype="multipart/form-data">
 
         @csrf
