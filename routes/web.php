@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,8 @@ Route::delete('/post/{id}', [App\Http\Controllers\PostController::class, 'destro
 Route::get('/post/{id}', [App\Http\Controllers\PostController::class, 'edit'])->name('blog.edit');
 Route::put('/post/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('blog.update');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 });
+

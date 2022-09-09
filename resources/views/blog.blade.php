@@ -24,6 +24,15 @@
 
         <h1>MEU BLOG</h1>
 
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: flex; flex-direction: column" 
+        enctype="multipart/form-data">
+
+        @csrf
+        @method('POST')
+
+        </form>
+        <button type="submit" form="logout-form">Sair</button>
+
         <h2>NOVO POST:</h2>
         <div style="background-color: bisque">
         <form id="meu-form" action="{{ route('blog.store') }}" method="POST" style="display: flex; flex-direction: column" 
@@ -73,9 +82,10 @@
                         @csrf
                         @method('DELETE')
                     </form>
+                </div>
                     <button type="submit" form="delete-{{ $post->id }}">Excluir</button>
                     <a href="{{ route('blog.edit', $post->id) }}"  form="meu-form"><button>Editar</button></a>
-                </div>
+                
             </div>
                 @endforeach
             @endisset

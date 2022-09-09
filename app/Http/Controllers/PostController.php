@@ -74,16 +74,16 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdatePostRequest  $request
-     * @param  \App\Models\Post  $post
+     * @param  post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, int $id)
+    public function update(UpdatePostRequest $request,int $id)
     {
+    
         $post = Post::findOrFail($id);
         $data = $request->validated();
 
         $post->update($data);
-
         return redirect()->route('blog.index'); 
     }
 
